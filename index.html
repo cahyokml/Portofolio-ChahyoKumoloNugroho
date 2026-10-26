@@ -1,0 +1,2005 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Chahyo Kumolo Nugroho – Data Analytics Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=Caveat:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #fbf4e6;
+        --ink: #1d1a16;
+        --card: #fffaf0;
+        --acc: #ff5a36;
+        --acc2: #ffd23f;
+        --acc3: #7fd1ff;
+        --dot: #e4d8bd;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #17140f;
+          --ink: #f6efe0;
+          --card: #241f17;
+          --dot: #2e281d;
+        }
+      }
+      :root[data-theme="dark"] {
+        --bg: #17140f;
+        --ink: #f6efe0;
+        --card: #241f17;
+        --dot: #2e281d;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 70px);
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Bricolage Grotesque", system-ui, sans-serif;
+        background-image: linear-gradient(
+          to bottom,
+          transparent calc(100% - 1px),
+          var(--dot) calc(100% - 1px)
+        );
+        background-size: 100% 44px;
+        overflow-x: hidden;
+      }
+      body.gesture-active {
+        user-select: none;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0 0 auto;
+        height: env(safe-area-inset-top, 0px);
+        background: var(--bg);
+        z-index: 30;
+      }
+      .hand {
+        font-family: "Caveat", cursive;
+        font-weight: 700;
+      }
+      a {
+        color: inherit;
+      }
+      header {
+        position: sticky;
+        top: env(safe-area-inset-top, 0px);
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 5vw;
+        background: var(--bg);
+        border-bottom: 2px solid var(--ink);
+      }
+      .logo {
+        font-size: 1.7rem;
+        text-decoration: none;
+      }
+      .logo b {
+        color: var(--acc);
+      }
+      nav {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      nav a,
+      nav button,
+      .btn {
+        font:
+          600 0.95rem "Bricolage Grotesque",
+          sans-serif;
+        color: var(--ink);
+        background: var(--card);
+        border: 2px solid var(--ink);
+        border-radius: 99px;
+        padding: 6px 14px;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 3px 3px 0 var(--ink);
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
+      }
+      nav a:hover,
+      nav button:hover,
+      .btn:hover {
+        transform: translate(-2px, -2px) rotate(-2deg);
+        box-shadow: 5px 5px 0 var(--ink);
+        background: var(--acc2);
+        color: #1d1a16;
+      }
+      .btn.pri {
+        background: var(--acc);
+        color: #fff;
+      }
+      .btn.pri:hover {
+        color: #1d1a16;
+      }
+      section {
+        padding: 70px 5vw;
+        max-width: 1200px;
+        margin: auto;
+      }
+      .hero {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 18px;
+        min-height: calc(100svh - 64px);
+        padding-top: 48px;
+        padding-bottom: 64px;
+        text-align: center;
+      }
+      .hi {
+        font-size: 1.6rem;
+        color: var(--ink);
+      }
+      h1 {
+        margin: 0;
+        font-weight: 800;
+        line-height: 0.9;
+        font-size: clamp(3rem, 13vw, 9rem);
+        letter-spacing: -0.04em;
+      }
+      h1 span {
+        display: block;
+        font-size: 0.5em;
+        -webkit-text-stroke: 2px var(--ink);
+        color: transparent;
+      }
+      .sub {
+        font-size: 1.15rem;
+        margin: 18px 0;
+      }
+      .sub b {
+        background: var(--acc2);
+        color: #1d1a16;
+        padding: 0 6px;
+        border-radius: 4px;
+      }
+      .row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+      }
+      .hero-name {
+        position: relative;
+        max-width: 1100px;
+      }
+      .hero-photo {
+        position: absolute;
+        top: 57%;
+        width: 84px;
+        height: 84px;
+        padding: 5px;
+        border: 5px solid var(--acc);
+        border-radius: 50%;
+        object-fit: cover;
+        background: #fff;
+      }
+      .hero-photo-left {
+        left: 8vw;
+        transform: rotate(-8deg);
+      }
+      .hero-photo-right {
+        right: 8vw;
+        transform: rotate(8deg);
+      }
+      .availability {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 22px;
+        font-weight: 800;
+        letter-spacing: 0.13em;
+      }
+      .availability-dot {
+        width: 12px;
+        height: 12px;
+        flex: 0 0 auto;
+        border-radius: 50%;
+        background: #315be0;
+      }
+      .hero-notes {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: clamp(14px, 5vw, 72px);
+        width: min(100%, 760px);
+        margin-top: 10px;
+      }
+      .hero-note {
+        position: relative;
+        padding: 10px 16px;
+        background: #ffd23f;
+        color: #1d1a16;
+        font-weight: 700;
+        box-shadow: 3px 4px 0 #1d1a1622;
+        transform: rotate(-3deg);
+      }
+      .hero-note:last-child {
+        background: #9bdcc5;
+        transform: rotate(3deg);
+      }
+      .hero-note::after {
+        position: absolute;
+        top: -24px;
+        font-size: 1.7rem;
+        font-weight: 800;
+      }
+      .hero-note:first-child::after {
+        content: "↗";
+        right: -16px;
+        transform: rotate(8deg);
+      }
+      .hero-note:last-child::after {
+        content: "↖";
+        left: -16px;
+        transform: rotate(-8deg);
+      }
+      .hero-contact {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 22px;
+        padding: 9px 18px 9px 9px;
+        border-radius: 0;
+        background: #1d1a16;
+        color: #fff;
+        box-shadow: none;
+        letter-spacing: 0.12em;
+      }
+      .hero-contact:hover {
+        background: #1d1a16;
+        color: #fff;
+        transform: translateY(-3px);
+      }
+      .hero-contact span {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        background: #315be0;
+        color: #fff;
+      }
+      .canvas {
+        position: relative;
+        min-height: 440px;
+        touch-action: none;
+      }
+      .stk {
+        position: absolute;
+        cursor: grab;
+        user-select: none;
+        touch-action: none;
+        transform: translate(var(--x, 0px), var(--y, 0px))
+          rotate(var(--r, 0deg));
+        transition: box-shadow 0.2s;
+      }
+      .stk:active {
+        cursor: grabbing;
+        z-index: 9;
+      }
+      .pol {
+        background: #fff;
+        color: #1d1a16;
+        padding: 10px 10px 6px;
+        border: 2px solid var(--ink);
+        box-shadow: 5px 5px 0 var(--ink);
+        width: var(--w, 190px);
+      }
+      .pol img {
+        width: 100%;
+        aspect-ratio: 1/1.1;
+        object-fit: cover;
+        display: block;
+        pointer-events: none;
+        border: 1px solid #0002;
+      }
+      .pol p {
+        margin: 4px 0 0;
+        text-align: center;
+        font-size: 1.4rem;
+        line-height: 1.1;
+      }
+      .note {
+        background: var(--acc2);
+        color: #1d1a16;
+        border: 2px solid var(--ink);
+        padding: 10px 14px;
+        font-size: 1.5rem;
+        box-shadow: 4px 4px 0 var(--ink);
+      }
+      .hint {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        font-size: 1.4rem;
+        opacity: 0.7;
+        transform: rotate(-4deg);
+      }
+      .tape {
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        width: 64px;
+        height: 22px;
+        background: #ffd23fcc;
+        transform: translateX(-50%) rotate(-4deg);
+        pointer-events: none;
+      }
+      .mq {
+        overflow: hidden;
+        border-block: 2px solid var(--ink);
+        background: var(--acc);
+        color: #fff;
+        transform: rotate(-1deg);
+        margin: 10px -2vw;
+      }
+      .mq div {
+        display: flex;
+        width: max-content;
+        animation: m 28s linear infinite;
+        padding: 12px 0;
+        font-size: 1.5rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        white-space: nowrap;
+      }
+      .mq span {
+        padding-right: 28px;
+      }
+      @keyframes m {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      h2 {
+        font-size: clamp(2rem, 6vw, 3.8rem);
+        margin: 0 0 6px;
+        line-height: 1;
+      }
+      .tag-h {
+        font-size: 1.8rem;
+        color: var(--acc);
+        display: block;
+      }
+      .about-summary {
+        max-width: 1100px;
+        padding-top: 80px;
+        padding-bottom: 80px;
+      }
+      .about-intro {
+        display: grid;
+        grid-template-columns: minmax(220px, 0.7fr) 1.3fr;
+        gap: clamp(28px, 6vw, 72px);
+        align-items: center;
+        padding: clamp(24px, 5vw, 58px);
+        background: var(--card);
+        border: 2px solid var(--ink);
+        box-shadow: 8px 8px 0 var(--ink);
+        text-align: left;
+      }
+      .about-intro-photo-wrap {
+        position: relative;
+        max-width: 320px;
+        margin: auto;
+        padding: 12px;
+        background: #fff;
+        box-shadow: 5px 5px 0 var(--ink);
+        transform: rotate(-3deg);
+      }
+      .about-intro-photo-wrap::before,
+      .about-intro-photo-wrap::after {
+        content: "";
+        position: absolute;
+        top: -8px;
+        width: 58px;
+        height: 20px;
+        background: #ffd23fcc;
+        z-index: 1;
+      }
+      .about-intro-photo-wrap::before {
+        left: -10px;
+        transform: rotate(-9deg);
+      }
+      .about-intro-photo-wrap::after {
+        right: -10px;
+        transform: rotate(8deg);
+      }
+      .about-intro-photo {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4/5;
+        object-fit: cover;
+      }
+      .about-intro-copy h2 {
+        margin-bottom: 20px;
+      }
+      .about-intro-copy p {
+        max-width: 650px;
+        margin: 0;
+        font-size: clamp(1.15rem, 2.2vw, 1.7rem);
+        line-height: 1.55;
+      }
+      .about-detail {
+        max-width: 1320px;
+        padding-top: 36px;
+      }
+      .about-detail[hidden] {
+        display: none;
+      }
+      .about-detail-hero {
+        display: grid;
+        grid-template-columns: minmax(220px, 0.7fr) 1.3fr;
+        gap: clamp(28px, 6vw, 80px);
+        align-items: center;
+        margin: 18px 0 48px;
+      }
+      .about-detail-photo {
+        width: min(100%, 360px);
+        aspect-ratio: 4/5;
+        object-fit: cover;
+        border: 10px solid #fff;
+        box-shadow: 8px 8px 0 var(--ink);
+        transform: rotate(-3deg);
+      }
+      .about-detail-copy {
+        font-size: 1.08rem;
+        line-height: 1.75;
+      }
+      .about-detail-copy .box {
+        margin-top: 0;
+      }
+      .about-section-title {
+        margin: 48px 0 18px;
+      }
+      .featured-intro {
+        max-width: 1100px;
+        padding-top: 65px;
+        padding-bottom: 42px;
+        text-align: center;
+      }
+      .featured-intro .tag-h {
+        color: var(--ink);
+      }
+      .featured-title {
+        max-width: 800px;
+        margin: 14px auto 0;
+        font-size: clamp(3.5rem, 12vw, 8rem);
+        line-height: 0.82;
+        letter-spacing: -0.06em;
+        text-transform: uppercase;
+      }
+      .featured-caption {
+        width: fit-content;
+        max-width: 90%;
+        margin: 28px auto 0;
+        padding: 12px 22px;
+        background: #f2df9d;
+        color: #1d1a16;
+        transform: rotate(-2deg);
+        font-weight: 600;
+      }
+      .home-tools {
+        max-width: 1200px;
+        padding-top: 64px;
+        padding-bottom: 80px;
+      }
+      .home-tools h2 {
+        margin-top: 8px;
+      }
+      .certificates-detail {
+        margin: 54px 0 20px;
+      }
+      .certificates-detail .certs {
+        margin-top: 22px;
+      }
+      .pols {
+        position: relative;
+        min-height: 420px;
+      }
+      .box {
+        background: var(--card);
+        border: 2px solid var(--ink);
+        border-radius: 14px;
+        padding: 18px;
+        box-shadow: 5px 5px 0 var(--ink);
+        margin-top: 18px;
+      }
+      .box h3 {
+        margin: 0 0 8px;
+        font-size: 1.6rem;
+      }
+      .box p {
+        margin: 6px 0;
+        line-height: 1.55;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+      }
+      .chip {
+        border: 2px solid var(--ink);
+        border-radius: 99px;
+        padding: 3px 12px;
+        font-size: 0.9rem;
+        background: var(--bg);
+      }
+      .chip:nth-child(3n) {
+        background: var(--acc3);
+        color: #1d1a16;
+      }
+      .chip:nth-child(3n + 1) {
+        background: var(--acc2);
+        color: #1d1a16;
+      }
+      .tools {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+        gap: 16px;
+        margin-top: 26px;
+      }
+      .flip {
+        perspective: 700px;
+        height: 150px;
+        cursor: pointer;
+        background: none;
+        border: 0;
+        padding: 0;
+        font: inherit;
+        color: inherit;
+        text-align: center;
+      }
+      .flip i {
+        position: relative;
+        display: block;
+        height: 100%;
+        transform-style: preserve-3d;
+        transition: transform 0.5s;
+      }
+      .flip:hover i,
+      .flip.on i {
+        transform: rotateY(180deg);
+      }
+      .flip em {
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 12px;
+        font-style: normal;
+        background: var(--card);
+        border: 2px solid var(--ink);
+        border-radius: 14px;
+        box-shadow: 4px 4px 0 var(--ink);
+      }
+      .flip em:last-child {
+        transform: rotateY(180deg);
+        background: var(--acc2);
+        color: #1d1a16;
+        font-size: 0.85rem;
+        line-height: 1.35;
+      }
+      .flip em b {
+        font-size: 1rem;
+      }
+      .tool-icon {
+        display: grid;
+        width: 48px;
+        height: 48px;
+        place-items: center;
+        color: #315be0;
+      }
+      .tool-icon svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      .tool-name {
+        font-size: 1.05rem;
+        font-weight: 800;
+      }
+      .proj {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+        gap: 28px;
+        margin-top: 30px;
+      }
+      .card {
+        background: var(--card);
+        border: 2px solid var(--ink);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 6px 6px 0 var(--ink);
+        cursor: pointer;
+        transition: transform 0.2s;
+        text-align: left;
+        padding: 0;
+        font: inherit;
+        color: inherit;
+      }
+      .card:hover {
+        transform: translate(-3px, -5px) rotate(-1.2deg);
+      }
+      .card:nth-child(even):hover {
+        transform: translate(-3px, -5px) rotate(1.2deg);
+      }
+      .card img {
+        width: 100%;
+        height: 230px;
+        object-fit: cover;
+        object-position: top;
+        display: block;
+        border-bottom: 2px solid var(--ink);
+      }
+      .card div {
+        padding: 16px;
+      }
+      .card small {
+        font-size: 1.3rem;
+        color: var(--acc);
+      }
+      .card h3 {
+        margin: 2px 0 8px;
+        font-size: 1.5rem;
+        line-height: 1.1;
+      }
+      #project {
+        max-width: 1500px;
+        padding-top: 20px;
+        padding-bottom: 0;
+      }
+      .project-stack {
+        --project-step: clamp(640px, 100svh, 920px);
+        --project-panel-height: clamp(560px, calc(100svh - 128px), 780px);
+        margin-top: 0;
+        padding-top: 54px;
+      }
+      .project-card-wrap {
+        position: relative;
+        height: calc(var(--project-panel-height) + var(--project-step));
+        min-height: 1200px;
+        margin-bottom: calc(0px - var(--project-panel-height));
+      }
+      .project-card-wrap:last-child {
+        height: calc(100svh + 40px);
+        min-height: 760px;
+        margin-bottom: 0;
+      }
+      .project-panel {
+        position: sticky;
+        top: 84px;
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        align-items: center;
+        gap: clamp(24px, 4vw, 56px);
+        height: var(--project-panel-height);
+        padding: clamp(26px, 3.5vw, 48px);
+        background: var(--project-color, #315be0);
+        color: var(--project-ink, #fff);
+      }
+      .project-card-wrap:nth-child(2) .project-panel {
+        --project-color: #1d1a16;
+      }
+      .project-card-wrap:nth-child(3) .project-panel {
+        --project-color: #ffd23f;
+        color: #1d1a16;
+      }
+      .project-label {
+        position: absolute;
+        left: 0;
+        top: -46px;
+        min-width: 280px;
+        padding: 15px 44px 17px 30px;
+        background: var(--project-color, #315be0);
+        color: var(--project-ink, #fff);
+        clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 100%, 0 100%);
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        z-index: 1;
+      }
+      .project-card-wrap:nth-child(2) .project-label {
+        --project-color: #1d1a16;
+      }
+      .project-card-wrap:nth-child(3) .project-label {
+        --project-color: #ffd23f;
+        color: #1d1a16;
+      }
+      .project-card-wrap {
+        z-index: 1;
+      }
+      .project-card-wrap:nth-child(2) {
+        z-index: 2;
+      }
+      .project-card-wrap:nth-child(3) {
+        z-index: 3;
+      }
+      .project-copy {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .project-eyebrow {
+        font-size: 0.9rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+      }
+      .project-copy h3 {
+        font-size: clamp(2.4rem, 4.6vw, 4.5rem);
+        line-height: 0.92;
+        letter-spacing: -0.05em;
+        margin: 14px 0;
+      }
+      .project-copy p {
+        font-size: 1rem;
+        line-height: 1.45;
+        max-width: 540px;
+        margin: 0;
+      }
+      .project-link {
+        display: inline-block;
+        align-self: flex-start;
+        margin-top: 18px;
+        padding: 0 0 5px;
+        border-bottom: 2px solid currentColor;
+        text-decoration: none;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        color: inherit;
+      }
+      .project-link:hover {
+        transform: translateY(-2px);
+      }
+      .project-visual {
+        position: relative;
+        display: grid;
+        min-width: 0;
+        aspect-ratio: 16 / 10;
+        place-items: center;
+        overflow: hidden;
+        padding: 8px;
+        background: #fff;
+        box-shadow: 8px 8px 0 #1d1a16;
+      }
+      .project-visual::before,
+      .project-visual::after {
+        content: "";
+        position: absolute;
+        top: -10px;
+        width: 72px;
+        height: 22px;
+        background: #fff9d8c9;
+        z-index: 1;
+      }
+      .project-visual::before {
+        left: -10px;
+        transform: rotate(-8deg);
+      }
+      .project-visual::after {
+        right: -10px;
+        transform: rotate(8deg);
+      }
+      .project-visual img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+      }
+      .project-tag {
+        padding: 9px 13px;
+        background: #1d1a16;
+        color: #fff;
+        font-weight: 700;
+      }
+      .more-projects-title {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 24px;
+      }
+      .more-projects-title h2 {
+        font-size: clamp(2.2rem, 5vw, 4rem);
+      }
+      .more-projects-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+      .more-project-card {
+        display: block;
+        background: var(--card);
+        color: var(--ink);
+        text-decoration: none;
+        padding: 12px;
+        border: 1px solid var(--dot);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .more-project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 6px 7px 0 var(--ink);
+      }
+      .more-project-card img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16/10;
+        object-fit: cover;
+      }
+      .more-project-card strong {
+        display: block;
+        margin: 12px 4px 2px;
+        font-size: 1.15rem;
+      }
+      .more-project-card span {
+        display: block;
+        margin: 0 4px 8px;
+        font-size: 0.9rem;
+        opacity: 0.75;
+      }
+      .project-detail {
+        max-width: 1320px;
+        margin: auto;
+        padding: 42px 5vw 80px;
+      }
+      .project-detail[hidden] {
+        display: none;
+      }
+      .detail-page header nav,
+      .detail-page > .hero,
+      .detail-page > .mq,
+      .detail-page > #tentang,
+      .detail-page > #tools,
+      .detail-page > .featured-intro,
+      .detail-page > #project,
+      .detail-page > #sertifikat,
+      .detail-page > #kontak,
+      .detail-page > footer {
+        display: none;
+      }
+      .detail-page header {
+        position: static;
+      }
+      .detail-page .project-detail:not([hidden]),
+      .detail-page .about-detail:not([hidden]) {
+        display: block;
+      }
+      .detail-back {
+        display: inline-block;
+        margin-bottom: 26px;
+        font-weight: 800;
+        text-decoration: none;
+      }
+      .detail-card {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: clamp(24px, 5vw, 64px);
+        align-items: center;
+        background: #ffd23f;
+        color: #1d1a16;
+        padding: clamp(24px, 5vw, 64px);
+      }
+      .detail-card h1 {
+        font-size: clamp(2.8rem, 7vw, 5.5rem);
+        line-height: 0.98;
+        margin: 18px 0;
+      }
+      .detail-card p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+      }
+      .detail-card > img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: contain;
+        background: #fff;
+        border: 8px solid #fff;
+        box-shadow: 8px 8px 0 #1d1a16;
+      }
+      .detail-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+      }
+      .detail-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 11px 14px;
+        background: #1d1a16;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 800;
+      }
+      .detail-link:hover {
+        background: #315be0;
+      }
+      .detail-link-unavailable {
+        font-weight: 700;
+        opacity: 0.8;
+      }
+      .detail-sections {
+        max-width: 980px;
+        margin: 42px auto 0;
+      }
+      .detail-section {
+        max-width: none;
+        margin: 0 0 22px;
+        padding: 0;
+      }
+      .detail-section h2 {
+        margin: 0 0 10px;
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+      }
+      .detail-section p,
+      .detail-section li {
+        font-size: 1.05rem;
+        line-height: 1.55;
+      }
+      .detail-section ul {
+        padding-left: 24px;
+        margin: 10px 0;
+      }
+      .detail-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .detail-tech .project-tag {
+        background: var(--acc2);
+        color: #1d1a16;
+      }
+      .detail-gallery {
+        max-width: none;
+        margin: 38px 0 0;
+        padding: 0;
+      }
+      .detail-gallery h2 {
+        margin-bottom: 20px;
+      }
+      .detail-gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+      .detail-gallery figure {
+        margin: 0;
+        padding: 10px;
+        background: #fff;
+        box-shadow: 5px 5px 0 var(--ink);
+      }
+      .detail-gallery img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 4/3;
+        object-fit: contain;
+        background: #fff;
+      }
+      .detail-gallery figcaption {
+        padding: 10px 4px 2px;
+        font-size: 0.88rem;
+        font-weight: 700;
+      }
+      .detail-placeholder-note {
+        margin: 16px 0 0;
+        font-size: 0.9rem;
+        opacity: 0.75;
+      }
+      .detail-more-projects {
+        max-width: none;
+        margin: 40px 0 0;
+        padding: 28px 0 0;
+        border-top: 1px solid var(--dot);
+      }
+      .detail-more-projects h2 {
+        font-size: clamp(1.8rem, 4vw, 3rem);
+      }
+      .detail-more-projects .more-projects-grid {
+        margin-top: 20px;
+      }
+      .detail-contact {
+        margin: 64px 0 20px;
+        padding: clamp(24px, 5vw, 52px);
+        background: var(--card);
+        border: 2px solid var(--ink);
+        box-shadow: 7px 7px 0 var(--ink);
+        text-align: center;
+      }
+      .detail-contact .tag-h {
+        margin-bottom: 6px;
+      }
+      .detail-contact h2 {
+        font-size: clamp(1.8rem, 4vw, 3rem);
+      }
+      .detail-contact p {
+        line-height: 1.55;
+      }
+      .detail-contact .big {
+        font-size: clamp(1.2rem, 3vw, 2rem);
+      }
+      .detail-navigation {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        margin-top: 32px;
+      }
+      .detail-navigation a {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 11px 15px;
+        background: #1d1a16;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 800;
+      }
+      .detail-navigation a:hover {
+        background: #315be0;
+      }
+      .detail-navigation a[aria-disabled="true"] {
+        opacity: 0.45;
+        pointer-events: none;
+      }
+      .about-open-link {
+        display: inline-block;
+        margin-top: 22px;
+        padding-bottom: 5px;
+        border-bottom: 2px solid currentColor;
+        text-decoration: none;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+      }
+      .about-open-link:hover {
+        color: var(--acc);
+      }
+      .detail-page .about-detail:not([hidden]) {
+        display: block;
+      }
+      .certs {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        margin-top: 28px;
+      }
+      .certs .pol {
+        width: 230px;
+        cursor: zoom-in;
+      }
+      .certs .pol img {
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        object-position: top;
+      }
+      .contact {
+        text-align: center;
+      }
+      .big {
+        display: inline-block;
+        font-size: clamp(1.4rem, 4.5vw, 3rem);
+        font-weight: 800;
+        word-break: break-all;
+        border-bottom: 4px solid var(--acc);
+        text-decoration: none;
+        margin: 16px 0;
+      }
+      .contact .row {
+        justify-content: center;
+      }
+      footer {
+        border-top: 2px solid var(--ink);
+        padding: 22px 5vw;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px;
+        font-size: 0.9rem;
+      }
+      .mod {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        background: #000a;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .mod.on {
+        display: flex;
+      }
+      .mb {
+        background: var(--card);
+        color: var(--ink);
+        border: 2px solid var(--ink);
+        border-radius: 16px;
+        max-width: 760px;
+        width: 100%;
+        max-height: 90vh;
+        overflow: auto;
+        box-shadow: 8px 8px 0 var(--acc);
+        position: relative;
+      }
+      .mb img {
+        width: 100%;
+        display: block;
+        border-bottom: 2px solid var(--ink);
+      }
+      .mb div {
+        padding: 20px;
+      }
+      .x {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 2px solid var(--ink);
+        background: var(--acc2);
+        color: #1d1a16;
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+      .rv {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.7s,
+          transform 0.7s;
+      }
+      .rv.in {
+        opacity: 1;
+        transform: none;
+      }
+      @media (max-width: 800px) {
+        .hero {
+          min-height: calc(100svh - 58px);
+        }
+        .hero-photo {
+          width: 68px;
+          height: 68px;
+          border-width: 4px;
+        }
+        .hero-photo-left {
+          left: 5vw;
+          top: 68%;
+        }
+        .hero-photo-right {
+          right: 5vw;
+          top: 68%;
+        }
+        .about-intro {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .about-intro-photo-wrap {
+          width: min(70%, 260px);
+        }
+        .about-intro-copy p {
+          margin: auto;
+        }
+        .about-detail-hero {
+          grid-template-columns: 1fr;
+        }
+        .about-detail-photo {
+          width: min(70%, 320px);
+          margin: auto;
+        }
+        .project-panel,
+        .detail-card {
+          grid-template-columns: 1fr;
+        }
+        .project-card-wrap {
+          height: auto;
+          min-height: 0;
+          margin: 0 0 38px;
+        }
+        .project-card-wrap:last-child {
+          margin-bottom: 0;
+        }
+        .project-panel {
+          position: relative;
+          top: auto;
+          height: auto;
+          min-height: 0;
+          max-height: none;
+          padding: 32px 26px;
+          gap: 24px;
+        }
+        .project-label {
+          top: -42px;
+        }
+        .detail-gallery-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .more-projects-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        nav a.h {
+          display: none;
+        }
+        nav a[href="?about=1"] {
+          display: inline-block;
+        }
+      }
+      @media (max-width: 520px) {
+        .availability {
+          font-size: 0.8rem;
+          letter-spacing: 0.08em;
+        }
+        .hero-notes {
+          gap: 18px;
+        }
+        .hero-note {
+          padding: 8px 11px;
+          font-size: 0.9rem;
+        }
+        .hero-photo {
+          width: 56px;
+          height: 56px;
+          border-width: 3px;
+          padding: 3px;
+        }
+        .hero-photo-left {
+          left: 4vw;
+          top: 72%;
+        }
+        .hero-photo-right {
+          right: 4vw;
+          top: 72%;
+        }
+        .hero-contact {
+          margin-top: 16px;
+        }
+        .about-intro {
+          padding: 26px 20px;
+        }
+        .about-intro-photo-wrap {
+          width: min(72%, 220px);
+        }
+        .featured-intro {
+          padding-top: 45px;
+          padding-bottom: 26px;
+        }
+        .featured-caption {
+          font-size: 0.9rem;
+        }
+        .project-label {
+          min-width: 220px;
+          top: -42px;
+          padding: 15px 34px 16px 22px;
+          font-size: 0.85rem;
+        }
+        .project-panel {
+          padding: 28px 20px;
+        }
+        .project-copy h3 {
+          font-size: 2.8rem;
+        }
+        .project-tags {
+          margin-top: 20px;
+        }
+        .detail-gallery-grid,
+        .more-projects-grid {
+          grid-template-columns: 1fr;
+        }
+        .detail-card {
+          padding: 26px 20px;
+        }
+        .detail-section p,
+        .detail-section li {
+          font-size: 1rem;
+        }
+        .detail-navigation a {
+          font-size: 0.85rem;
+          padding: 10px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .mq div {
+          animation: none;
+        }
+        .rv {
+          opacity: 1;
+          transform: none;
+        }
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a class="logo hand" href="#top">chahyo kumolo nugroho<b></b></a>
+      <nav>
+        <a class="h" href="?about=1" target="_blank" rel="noopener">Tentang</a
+        ><a class="h" href="#project">Project</a
+        ><a
+          class="h"
+          href="?about=1#certificates"
+          target="_blank"
+          rel="noopener"
+          >Sertifikat</a
+        ><a href="#kontak">Kontak</a
+        ><button id="th" aria-label="Ganti tema">🌓</button>
+      </nav>
+    </header>
+
+    <section class="hero" id="top">
+      <div class="hero-name">
+        <div class="hi hand">my name is</div>
+        <h1>CHAHYO<span>KUMOLO NUGROHO</span></h1>
+        <div class="availability">
+          <span class="availability-dot"></span>TERBUKA UNTUK PELUANG KERJA
+        </div>
+        <div class="hero-notes">
+          <span class="hero-note">Data Analytics</span
+          ><span class="hero-note">Yogyakarta</span>
+        </div>
+        <a class="btn hero-contact" href="mailto:chahyokumolonugroho@gmail.com"
+          ><span>↗</span> CONTACT ME</a
+        >
+      </div>
+      <img
+        class="hero-photo hero-photo-left"
+        src="assets/images/foto-bw-1.jpg"
+        alt="Foto Chahyo di luar ruangan"
+      />
+      <img
+        class="hero-photo hero-photo-right"
+        src="assets/images/foto-bw-2.jpg"
+        alt="Foto Chahyo"
+      />
+    </section>
+
+    <section id="tentang" class="about-summary">
+      <div class="about-intro">
+        <div class="about-intro-photo-wrap">
+          <img
+            class="about-intro-photo"
+            src="assets/images/foto-bw-2.jpg"
+            alt="Foto Chahyo Kumolo Nugroho"
+          />
+        </div>
+        <div class="about-intro-copy">
+          <a
+            class="about-open-link"
+            href="?about=1"
+            target="_blank"
+            rel="noopener"
+            ><span class="tag-h hand">about me!</span>
+            <h2>Tentang Saya ↗</h2>
+            <p>
+              Saya lulusan Informatika Universitas Sanata Dharma dengan minat
+              pada Data Analytics dan teknologi. Saya memiliki pengalaman dalam
+              pengolahan data, database, pemrograman, dan pengembangan sistem.
+            </p></a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="featured-intro" aria-labelledby="featured-title">
+      <span class="tag-h hand">explore my work!</span>
+      <h2 class="featured-title" id="featured-title">Project<br />Pilihan</h2>
+      <p class="featured-caption">
+        Beberapa project yang saya kerjakan di bidang teknologi dan Data
+        Analytics.
+      </p>
+    </section>
+
+    <section id="project">
+      <div class="project-stack" id="project-stack"></div>
+    </section>
+
+    <section class="project-detail" id="project-detail" hidden></section>
+
+    <section class="home-tools" id="tools">
+      <span class="tag-h hand">tools &amp; teknologi</span>
+      <h2>Senjata Saya</h2>
+      <div class="tools" id="tl"></div>
+    </section>
+
+    <section class="about-detail" id="about-detail" hidden></section>
+
+    <section id="kontak" class="contact">
+      <span class="tag-h hand">ayo ngobrol</span>
+      <h2>Terbuka untuk peluang baru</h2>
+      <p>
+        Terbuka untuk kesempatan kerja di bidang Data Analytics dan
+        teknologi.<br />Maguwoharjo, Depok, Sleman · Willing to relocate
+      </p>
+      <a class="big" href="mailto:chahyokumolonugroho@gmail.com"
+        >chahyokumolonugroho@gmail.com</a
+      >
+      <div class="row">
+        <button class="btn" id="cp">Salin email 📋</button
+        ><a
+          class="btn pri"
+          href="https://linkedin.com/in/chahyo-kumolo-nugroho"
+          target="_blank"
+          rel="noopener"
+          >LinkedIn</a
+        ><a
+          class="btn"
+          href="https://www.instagram.com/cahyokml"
+          target="_blank"
+          rel="noopener"
+          >Instagram</a
+        ><a
+          class="btn"
+          href="https://wa.me/+6282384039392"
+          target="_blank"
+          rel="noopener"
+          >WhatsApp</a
+        >
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2026 Chahyo Kumolo Nugroho</span
+      ><span>Informatics Graduate · Data Analytics</span>
+    </footer>
+
+    <div class="mod" id="md">
+      <div class="mb">
+        <button class="x" aria-label="Tutup">✕</button><img id="mi" alt="" />
+        <div id="mt"></div>
+      </div>
+    </div>
+
+    <script>
+      const $ = (s) => document.querySelector(s);
+      const P = [
+        {
+          id: "sistem-rekomendasi-mobil",
+          t: "Sistem Rekomendasi Mobil",
+          g: ["Knowledge-Based Approach", "Undergraduate Project"],
+          i: "assets/images/project-rekomendasi-mobil.jpg",
+          d: "Sistem rekomendasi mobil berbasis web yang dikembangkan untuk menghasilkan rekomendasi kendaraan berdasarkan preferensi pengguna.",
+          c: "#315be0",
+          ink: "#fff",
+          tech: ["Laravel", "MySQL", "SQL", "PHP", "Data Processing"],
+          links: [],
+          images: [
+            "assets/images/skripsi1.png",
+            "assets/images/skripsi3.png",
+            "assets/images/skripsi4.png",
+          ],
+          sections: [
+            {
+              title: "Peran dan Kontribusi",
+              items: [
+                "Mengembangkan sistem rekomendasi menggunakan pendekatan Knowledge-Based.",
+                "Menerapkan Constraint-Based Filtering untuk menyaring kendaraan berdasarkan preferensi pengguna.",
+                "Menerapkan Similarity Scoring untuk mengukur dan mengurutkan tingkat kesesuaian kendaraan.",
+                "Mengembangkan sistem menggunakan Laravel dan MySQL.",
+                "Melakukan pengujian dengan 20 responden dan memperoleh skor usability 89%.",
+              ],
+            },
+            {
+              title: "Hasil Pengujian",
+              items: [
+                "89% Usability Score",
+                "20 Respondents",
+                "Very Good Category",
+              ],
+            },
+          ],
+        },
+        {
+          id: "tanam-in",
+          t: "Tanam.in Website",
+          g: ["E-Commerce Website", "Front-End Developer", "Team Project"],
+          i: "assets/images/project-tanamin.jpg",
+          d: "Website e-commerce tanaman hias yang dikembangkan secara tim untuk mendukung proses pencarian produk dan pembelian secara online.",
+          c: "#1d1a16",
+          ink: "#fff",
+          tech: [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "PHP",
+            "Laravel",
+            "MySQL",
+            "Figma",
+          ],
+          links: [
+            {
+              label: "Lihat UI di Figma",
+              url: "https://www.figma.com/file/K7I6UT3r3oYMPdyXo1KZY3/Tanamin",
+            },
+          ],
+          images: [
+            "assets/images/tanaman1.png",
+            "assets/images/tanaman3.png",
+            "assets/images/tanaman4.png",
+          ],
+          sections: [
+            {
+              title: "Peran dan Kontribusi",
+              items: [
+                "Mengembangkan interface e-commerce menggunakan HTML, CSS, dan JavaScript.",
+                "Menyempurnakan homepage dan beberapa halaman utama agar lebih terstruktur dan mudah digunakan.",
+                "Mengimplementasikan fitur checkout pada front-end dan back-end.",
+                "Mendukung alur pembelian dari keranjang hingga proses pembayaran.",
+              ],
+            },
+          ],
+        },
+        {
+          id: "delivery-performance-analytics",
+          t: "E-Commerce Delivery Performance Analytics",
+          g: ["Data Analytics", "Python & SQL"],
+          i: "assets/images/project-delivery-analytics.jpg",
+          d: "Project ini menganalisis performa pengiriman e-commerce menggunakan Brazilian E-Commerce Public Dataset by Olist untuk memahami ketepatan waktu, pola keterlambatan, dan kaitannya dengan kepuasan pelanggan.",
+          c: "#ffd23f",
+          ink: "#1d1a16",
+          tech: [
+            "Python",
+            "Pandas",
+            "NumPy",
+            "SQLite",
+            "SQL",
+            "Streamlit",
+            "Plotly",
+            "Jupyter Notebook",
+            "Matplotlib",
+          ],
+          links: [
+            {
+              label: "GitHub Repository",
+              url: "https://github.com/cahyokml/Delivery-Performance-Analytics",
+            },
+            {
+              label: "Live Dashboard",
+              url: "https://cahyokml-delivery-analytics.streamlit.app",
+            },
+          ],
+          images: [
+            "assets/images/delevery1.png",
+            "assets/images/delevery3.png",
+            "assets/images/delevery4.png",
+          ],
+          sections: [
+            {
+              title: "Overview",
+              text: "Data dari beberapa tabel mentah diolah dan dianalisis menggunakan SQL, lalu hasilnya disajikan melalui dashboard interaktif.",
+            },
+            {
+              title: "Tujuan Proyek",
+              items: [
+                "Mengukur persentase pesanan yang terlambat dari estimasi tanggal pengiriman.",
+                "Menghitung rata-rata durasi pengiriman pesanan.",
+                "Menganalisis perubahan tingkat keterlambatan dari bulan ke bulan.",
+                "Membandingkan tingkat keterlambatan berdasarkan wilayah pelanggan.",
+                "Menyajikan hasil analisis dalam visualisasi yang mudah dipahami.",
+              ],
+            },
+            {
+              title: "Key Highlights",
+              items: [
+                "Menganalisis 96.470 pesanan e-commerce.",
+                "Mengukur On-Time Delivery (OTD) rate dan mengidentifikasi pesanan terlambat.",
+                "Membandingkan skor ulasan pesanan tepat waktu dan terlambat.",
+                "Menganalisis pola keterlambatan berdasarkan wilayah.",
+                "Menyajikan metrik melalui dashboard interaktif.",
+              ],
+            },
+            {
+              title: "Key Findings",
+              items: [
+                "On-Time Delivery: tingkat pengiriman tepat waktu tercatat sebesar 93,23%.",
+                "Customer Satisfaction: pesanan terlambat memiliki rata-rata skor ulasan 2,27, sementara pesanan tepat waktu memperoleh 4,29.",
+                "Regional Performance: tingkat keterlambatan lebih tinggi di beberapa wilayah, termasuk AL sebesar 21,41% dan MA sebesar 17,43%.",
+                "Delivery Timing: secara keseluruhan, pesanan tiba rata-rata 11,88 hari lebih awal dari estimasi, meskipun masih terdapat 6.534 pesanan terlambat.",
+              ],
+            },
+            {
+              title: "Contoh Hasil Analisis — Maret 2018",
+              items: [
+                "Tingkat keterlambatan tercatat sebesar 21,36%, dengan 1.496 pesanan terlambat dari 7.003 pesanan valid yang telah terkirim.",
+                "Analisis juga membandingkan tren keterlambatan antarbulan dan antarwilayah tanpa menyimpulkan penyebab yang belum diuji.",
+              ],
+            },
+            {
+              title: "Tahapan Pengerjaan",
+              items: [
+                "Persiapan dan pemeriksaan struktur data pesanan serta pelanggan.",
+                "Pembersihan data, penyesuaian tanggal, dan pemilihan pesanan yang telah terkirim.",
+                "Analisis durasi pengiriman, keterlambatan, tren bulanan, dan performa antarwilayah.",
+                "Visualisasi hasil serta penyusunan ringkasan metrik untuk evaluasi.",
+              ],
+            },
+            {
+              title: "Hasil dan Pembelajaran",
+              text: "Melalui proyek ini, saya mempraktikkan pengolahan data, perhitungan metrik operasional, analisis tren, dan penyajian informasi melalui visualisasi. Proyek ini membantu saya memahami bagaimana data pengiriman dapat digunakan untuk mengevaluasi performa operasional e-commerce.",
+            },
+          ],
+        },
+      ];
+      const T = [
+        {
+          name: "SQL",
+          description:
+            "Mengolah, memfilter, dan menganalisis data menggunakan query SQL.",
+          icon: '<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><ellipse cx="24" cy="10" rx="15" ry="6" stroke="currentColor" stroke-width="2.5"/><path d="M9 10v27c0 3.3 6.7 6 15 6s15-2.7 15-6V10M9 19c0 3.3 6.7 6 15 6s15-2.7 15-6M9 28c0 3.3 6.7 6 15 6s15-2.7 15-6" stroke="currentColor" stroke-width="2.5"/></svg>',
+        },
+        {
+          name: "MySQL",
+          description:
+            "Digunakan untuk mengelola dan menyimpan data dalam basis data relasional.",
+          icon: '<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M8 12c8-7 21-7 31 0v19c-9 8-23 8-31 0V12Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M8 16c8 6 23 6 31 0M8 23c8 6 23 6 31 0M8 30c8 6 23 6 31 0" stroke="currentColor" stroke-width="2.5"/><circle cx="16" cy="12" r="1.5" fill="currentColor"/><circle cx="24" cy="12" r="1.5" fill="currentColor"/></svg>',
+        },
+        {
+          name: "Laravel",
+          description:
+            "Framework PHP yang digunakan dalam pengembangan aplikasi web berbasis database.",
+          icon: '<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="m24 5 17 9.5v19L24 43 7 33.5v-19L24 5Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="m7.5 14.5 16.5 9 16.5-9M24 24v18M15.5 9.7l17 9.6v8.2" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>',
+        },
+        {
+          name: "Figma",
+          description:
+            "Digunakan untuk membuat dan merancang tampilan antarmuka aplikasi.",
+          icon: '<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 5H16a8 8 0 0 0 0 16h8V5Zm0 16h8a8 8 0 1 0-8-8v8Zm0 0h-8a8 8 0 1 0 8 8v-8Zm0 8a8 8 0 1 0 16 0 8 8 0 0 0-16 0Zm0-8v8" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>',
+        },
+        {
+          name: "Python",
+          description:
+            "Digunakan untuk pengolahan dan analisis data serta pemrograman.",
+          icon: '<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 5c-9 0-9 4-9 9v5h18v4H12c-5 0-7 4-7 9s2 9 7 9h5v-7c0-5 4-8 9-8h8c5 0 9-4 9-9s-4-12-19-12Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M24 43c9 0 9-4 9-9v-5H15v-4h21c5 0 7-4 7-9s-2-9-7-9h-5v7c0 5-4 8-9 8h-8c-5 0-9 4-9 9s4 12 19 12Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><circle cx="21" cy="12" r="1.5" fill="currentColor"/><circle cx="27" cy="36" r="1.5" fill="currentColor"/></svg>',
+        },
+        {
+          name: "Microsoft Excel",
+          description:
+            "Digunakan untuk pengolahan data, analisis, dan pembuatan visualisasi sederhana.",
+          icon: '<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M27 5h13v38H8V13l19-8Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M27 5v9h13M14 22h20M14 29h20M14 36h20M23 22v14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>',
+        },
+      ];
+      const MK = [
+        "Administrasi Basis Data",
+        "Data Mining",
+        "Pemrograman Analisis Data",
+        "Statistika dan Probabilitas",
+        "Konsep dan Basis Data",
+      ];
+      $("#project-stack").innerHTML = P.map(
+        (p, n) =>
+          `<div class="project-card-wrap"><article class="project-panel" style="--project-color:${p.c};--project-ink:${p.ink}"><span class="project-label">✦ &nbsp; PROJECT 0${n + 1}</span><div class="project-copy"><span class="project-eyebrow">PROJECT 0${n + 1} &nbsp;·&nbsp; PORTOFOLIO CHAHYO</span><h3>${p.t}</h3><p>${p.d}</p><a class="project-link" href="?project=${encodeURIComponent(p.id)}" target="_blank" rel="noopener">VIEW PROJECT ↗</a><div class="project-tags">${p.g.map((g) => `<span class="project-tag">${g}</span>`).join("")}</div></div><div class="project-visual"><img src="${p.i}" alt="Tampilan ${p.t}"></div></article></div>`,
+      ).join("");
+      $("#tl").innerHTML = T.map(
+        (x) =>
+          `<button class="flip"><i><em><span class="tool-icon">${x.icon}</span><span class="tool-name">${x.name}</span></em><em>${x.description}</em></i></button>`,
+      ).join("");
+      const detailFooter = (nextUrl, nextLabel) =>
+        `<section class="detail-contact"><span class="tag-h hand">ayo ngobrol</span><h2>Terbuka untuk peluang baru</h2><p>Terbuka untuk kesempatan kerja di bidang Data Analytics dan teknologi.<br>Maguwoharjo, Depok, Sleman · Willing to relocate</p><a class="big" href="mailto:chahyokumolonugroho@gmail.com">chahyokumolonugroho@gmail.com</a><div class="row"><a class="btn pri" href="https://linkedin.com/in/chahyo-kumolo-nugroho" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="https://www.instagram.com/cahyokml" target="_blank" rel="noopener">Instagram</a><a class="btn" href="https://wa.me/+6282384039392" target="_blank" rel="noopener">WhatsApp</a></div><nav class="detail-navigation" aria-label="Navigasi halaman"><a href="${location.pathname}">← Beranda</a><a href="${nextUrl}">${nextLabel} →</a></nav></section>`;
+      $("#about-detail").innerHTML =
+        `<a class="detail-back" href="${location.pathname}#tentang">← Kembali ke beranda</a><span class="tag-h hand">about me!</span><h1 style="font-size:clamp(2.8rem,7vw,5.5rem)">Tentang Saya</h1><div class="about-detail-hero"><img class="about-detail-photo" src="assets/images/foto-profil.jpg" alt="Foto Chahyo Kumolo Nugroho"><div class="about-detail-copy"><div class="box"><h2 class="hand" style="font-size:2rem">Halo, saya Chahyo ✨</h2><p>Saya lulusan S1 Informatika Universitas Sanata Dharma yang memiliki minat pada Data Analytics dan pengolahan data.</p><p>Selama kuliah, saya memiliki pengalaman dalam pengolahan data, database, pemrograman, dan pengembangan sistem. Saya juga mengembangkan sistem rekomendasi pemilihan mobil sebagai project tugas akhir dengan pendekatan Knowledge-Based, Constraint-Based Filtering, dan Similarity Scoring.</p><p>Saya ingin terus mengembangkan kemampuan di bidang Data Analytics dan teknologi, serta mendapatkan pengalaman melalui pekerjaan dan project yang memberi kesempatan untuk belajar dan menyelesaikan masalah.</p></div></div></div><h2 class="about-section-title"><span class="tag-h hand">education</span>Pendidikan</h2><div class="box"><h3>🎓 Universitas Sanata Dharma</h3><p>S1 Informatika · 2022 — 2026</p><p>Mata kuliah relevan:</p><div class="chips">${MK.map((x) => `<span class="chip">${x}</span>`).join("")}</div><p style="margin-top:12px">Tugas akhir: <i>Pemodelan dengan Pendekatan Knowledge-Based Constraint untuk Pemilihan Mobil</i></p></div><h2 class="about-section-title"><span class="tag-h hand">experience</span>Pengalaman</h2><div class="box"><h3>☕ Barista · Mukalla.st</h3><p>Februari – Juni 2026</p></div><section class="certificates-detail" id="certificates"><span class="tag-h hand">belajar terus</span><h2>Sertifikat &amp; Pelatihan</h2><div class="certs"><div class="pol rv" style="--r:-3deg;transform:rotate(-3deg)" data-z="assets/images/sertifikat-intro-data-analytics.jpg" data-t="Intro to Data Analytics"><img src="assets/images/sertifikat-intro-data-analytics.jpg" alt="Sertifikat Intro to Data Analytics"><p class="hand">Intro to Data Analytics</p></div><div class="pol rv" style="transform:rotate(3deg)" data-z="assets/images/sertifikat-sap01.jpg" data-t="SAP01 – SAP Overview"><img src="assets/images/sertifikat-sap01.jpg" alt="Sertifikat SAP01 SAP Overview"><p class="hand">SAP01 – SAP Overview</p></div></div></section>`;
+      $("#about-detail").insertAdjacentHTML(
+        "beforeend",
+        detailFooter(
+          `${location.pathname}?project=${encodeURIComponent(P[0].id)}`,
+          "Lihat project",
+        ),
+      );
+      document
+        .querySelectorAll(".flip")
+        .forEach((b) => (b.onclick = () => b.classList.toggle("on")));
+      const openCertificate = location.hash === "#certificates";
+      const requestedProject = new URLSearchParams(location.search).get(
+        "project",
+      );
+      const requestedAbout = new URLSearchParams(location.search).get("about");
+      if (requestedProject) {
+        const p = P.find((item) => item.id === requestedProject);
+        document.body.classList.add("detail-page", "project-detail-page");
+        document.querySelector(".logo").href = `${location.pathname}#project`;
+        $("#project-detail").hidden = false;
+        if (p) {
+          document.title = `${p.t} – Chahyo Kumolo Nugroho`;
+          const sections = p.sections
+            .map(
+              (section) => `
+                <section class="detail-section">
+                  <h2>${section.title}</h2>
+                  ${section.text ? `<p>${section.text}</p>` : ""}
+                  ${
+                    section.items
+                      ? `<ul>${section.items.map((item) => `<li>${item}</li>`).join("")}</ul>`
+                      : ""
+                  }
+                </section>
+              `,
+            )
+            .join("");
+          const gallery = p.images
+            .map(
+              (image, index) => `
+                <figure>
+                  <img src="${image}" alt="Gambar ${index + 1} untuk ${p.t}" />
+                </figure>
+              `,
+            )
+            .join("");
+          const otherProjects = P.filter((item) => item.id !== p.id)
+            .map(
+              (item) => `
+                <a class="more-project-card" href="?project=${encodeURIComponent(item.id)}" target="_blank" rel="noopener">
+                  <img src="${item.i}" alt="Tampilan ${item.t}" />
+                  <strong>${item.t}</strong>
+                  <span>Lihat detail project ↗</span>
+                </a>
+              `,
+            )
+            .join("");
+          $("#project-detail").innerHTML = `
+            <a class="detail-back" href="${location.pathname}#project">← Semua proyek</a>
+            <article class="detail-card">
+              <div>
+                <span class="project-eyebrow">PROJECT 0${P.indexOf(p) + 1} · PROJECT DETAIL</span>
+                <h1>${p.t}</h1>
+                <p>${p.d}</p>
+                <div class="project-tags">${p.g.map((g) => `<span class="project-tag">${g}</span>`).join("")}</div>
+                <div class="detail-links">
+                  ${
+                    p.links.length
+                      ? p.links
+                          .map(
+                            (link) =>
+                              `<a class="detail-link" href="${link.url}" target="_blank" rel="noopener noreferrer">${link.label} ↗</a>`,
+                          )
+                          .join("")
+                      : '<span class="detail-link-unavailable">Tautan repository/demo belum tersedia.</span>'
+                  }
+                </div>
+              </div>
+              <img src="${p.i}" alt="Tampilan utama ${p.t}" />
+            </article>
+            <div class="detail-sections">
+              ${sections}
+              <section class="detail-section">
+                <h2>Tools &amp; Technologies</h2>
+                <div class="detail-tech">${p.tech.map((tool) => `<span class="project-tag">${tool}</span>`).join("")}</div>
+              </section>
+            </div>
+            <section class="detail-gallery">
+              <h2>Galeri Proyek</h2>
+              <div class="detail-gallery-grid">${gallery}</div>
+            </section>
+            <section class="detail-more-projects">
+              <div class="more-projects-title">
+                <div><span class="tag-h hand">keep exploring</span><h2>Project Lainnya</h2></div>
+                <span class="hand">Pilih project untuk melihat detailnya ↗</span>
+              </div>
+              <div class="more-projects-grid">${otherProjects}</div>
+            </section>
+          `;
+          $("#project-detail").insertAdjacentHTML(
+            "beforeend",
+            detailFooter(
+              `${location.pathname}?project=${encodeURIComponent(P[(P.indexOf(p) + 1) % P.length].id)}`,
+              "Project berikutnya",
+            ),
+          );
+        } else {
+          document.title = "Project tidak ditemukan – Chahyo Kumolo Nugroho";
+          $("#project-detail").innerHTML =
+            `<a class="detail-back" href="${location.pathname}#project">← Kembali ke semua proyek</a><div class="box"><h1>Project tidak ditemukan</h1><p>Project yang diminta tidak tersedia.</p></div>`;
+        }
+      }
+      if (requestedAbout === "1") {
+        document.body.classList.add("detail-page", "about-detail-page");
+        document.querySelector(".logo").href = `${location.pathname}#tentang`;
+        $("#about-detail").hidden = false;
+        document.title = "Tentang Saya – Chahyo Kumolo Nugroho";
+        if (openCertificate)
+          requestAnimationFrame(() => $("#certificates").scrollIntoView());
+      }
+      const detailPage = document.body.classList.contains("detail-page");
+      const goBack = () => {
+        if (detailPage) location.assign(location.pathname);
+      };
+      const goForward = () => {
+        if (!detailPage) return;
+        const currentIndex = P.findIndex(
+          (item) => item.id === requestedProject,
+        );
+        const nextProject = P[(currentIndex + 1 + P.length) % P.length];
+        location.assign(
+          `${location.pathname}?project=${encodeURIComponent(nextProject.id)}`,
+        );
+      };
+      addEventListener("keydown", (e) => {
+        if (
+          !detailPage ||
+          e.altKey ||
+          e.ctrlKey ||
+          e.metaKey ||
+          /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)
+        )
+          return;
+        if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          goBack();
+        }
+        if (e.key === "ArrowRight") {
+          e.preventDefault();
+          goForward();
+        }
+      });
+      let wheelNavigationAt = 0;
+      addEventListener(
+        "wheel",
+        (e) => {
+          if (
+            !detailPage ||
+            Math.abs(e.deltaX) < 70 ||
+            Math.abs(e.deltaX) < Math.abs(e.deltaY) * 1.2 ||
+            Date.now() - wheelNavigationAt < 800
+          )
+            return;
+          wheelNavigationAt = Date.now();
+          if (e.deltaX < 0) goBack();
+          else goForward();
+        },
+        { passive: true },
+      );
+      let pointerStart = null;
+      addEventListener("pointerdown", (e) => {
+        if (
+          !detailPage ||
+          !e.isPrimary ||
+          e.button !== 0 ||
+          e.target.closest("a,button,input,textarea,select,[data-z]")
+        )
+          return;
+        pointerStart = { x: e.clientX, y: e.clientY };
+        document.body.classList.add("gesture-active");
+      });
+      addEventListener("pointerup", (e) => {
+        if (!pointerStart) return;
+        const dx = e.clientX - pointerStart.x,
+          dy = e.clientY - pointerStart.y;
+        pointerStart = null;
+        document.body.classList.remove("gesture-active");
+        if (Math.abs(dx) < 110 || Math.abs(dx) < Math.abs(dy) * 1.3) return;
+        if (dx < 0) goBack();
+        else goForward();
+      });
+      addEventListener("pointercancel", () => {
+        pointerStart = null;
+        document.body.classList.remove("gesture-active");
+      });
+      const md = $("#md"),
+        open = (img, html, alt) => {
+          $("#mi").src = img;
+          $("#mi").alt = alt || "";
+          $("#mt").innerHTML = html;
+          md.classList.add("on");
+        };
+      document
+        .querySelectorAll("[data-z]")
+        .forEach(
+          (c) =>
+            (c.onclick = () =>
+              open(
+                c.dataset.z,
+                `<h3 class="hand" style="font-size:1.8rem;margin:0">${c.dataset.t}</h3>`,
+                c.dataset.t,
+              )),
+        );
+      md.onclick = (e) => {
+        if (e.target === md || e.target.className === "x")
+          md.classList.remove("on");
+      };
+      addEventListener("keydown", (e) => {
+        if (e.key === "Escape") md.classList.remove("on");
+      });
+      let z = 5;
+      document.querySelectorAll(".stk").forEach((el) => {
+        let sx,
+          sy,
+          ox,
+          oy,
+          on = 0;
+        el.addEventListener("pointerdown", (e) => {
+          on = 1;
+          sx = e.clientX;
+          sy = e.clientY;
+          ox = parseFloat(el.style.getPropertyValue("--x")) || 0;
+          oy = parseFloat(el.style.getPropertyValue("--y")) || 0;
+          el.style.zIndex = ++z;
+          el.setPointerCapture(e.pointerId);
+          el.style.boxShadow = "10px 12px 0 var(--ink)";
+        });
+        el.addEventListener("pointermove", (e) => {
+          if (!on) return;
+          el.style.setProperty("--x", ox + e.clientX - sx + "px");
+          el.style.setProperty("--y", oy + e.clientY - sy + "px");
+        });
+        ["pointerup", "pointercancel"].forEach((t) =>
+          el.addEventListener(t, () => {
+            on = 0;
+            el.style.boxShadow = "";
+          }),
+        );
+      });
+      const io = new IntersectionObserver(
+        (a) =>
+          a.forEach((x) => {
+            if (x.isIntersecting) {
+              x.target.classList.add("in");
+              io.unobserve(x.target);
+            }
+          }),
+        { threshold: 0.15 },
+      );
+      document.querySelectorAll(".rv").forEach((e, i) => {
+        e.style.transitionDelay = (i % 4) * 80 + "ms";
+        io.observe(e);
+      });
+      $("#cp").onclick = async () => {
+        try {
+          await navigator.clipboard.writeText("chahyokumolonugroho@gmail.com");
+          $("#cp").textContent = "Tersalin ✓";
+        } catch (e) {
+          location.href = "mailto:chahyokumolonugroho@gmail.com";
+        }
+      };
+      $("#th").onclick = () => {
+        const r = document.documentElement,
+          d = getComputedStyle(r).getPropertyValue("--bg").trim() === "#17140f";
+        r.dataset.theme = d ? "light" : "dark";
+        try {
+          localStorage.setItem("th", r.dataset.theme);
+        } catch (e) {}
+      };
+      try {
+        const t = localStorage.getItem("th");
+        if (t) document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </body>
+</html>
