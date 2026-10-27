@@ -677,24 +677,30 @@
       }
       #project {
         max-width: 1500px;
-        padding-top: 20px;
+        padding-top: 56px;
         padding-bottom: 0;
       }
       .project-stack {
-        --project-step: clamp(640px, 100svh, 920px);
-        --project-panel-height: clamp(560px, calc(100svh - 128px), 780px);
+        --project-panel-height: clamp(720px, calc(100svh - 80px), 900px);
+        --project-step: calc(var(--project-panel-height) - 72px);
         margin-top: 0;
-        padding-top: 54px;
       }
       .project-card-wrap {
         position: relative;
-        height: calc(var(--project-panel-height) + var(--project-step));
-        min-height: 1200px;
-        margin-bottom: calc(0px - var(--project-panel-height));
+        height: calc(
+          var(--project-panel-height) +
+            var(--project-step) +
+            var(--project-remaining) * var(--project-step)
+        );
+        margin-bottom: calc(
+          0px - var(--project-panel-height) -
+            var(--project-remaining) * var(--project-step)
+        );
       }
       .project-card-wrap:last-child {
-        height: calc(100svh + 40px);
-        min-height: 760px;
+        height: calc(
+          var(--project-panel-height) + var(--project-step)
+        );
         margin-bottom: 0;
       }
       .project-panel {
@@ -709,12 +715,14 @@
         background: var(--project-color, #315be0);
         color: var(--project-ink, #fff);
       }
-      .project-card-wrap:nth-child(2) .project-panel {
-        --project-color: #1d1a16;
+      .project-card-wrap {
+        z-index: 1;
       }
-      .project-card-wrap:nth-child(3) .project-panel {
-        --project-color: #ffd23f;
-        color: #1d1a16;
+      .project-card-wrap:nth-child(2) {
+        z-index: 2;
+      }
+      .project-card-wrap:nth-child(3) {
+        z-index: 3;
       }
       .project-label {
         position: absolute;
@@ -729,26 +737,12 @@
         letter-spacing: 0.14em;
         z-index: 1;
       }
-      .project-card-wrap:nth-child(2) .project-label {
-        --project-color: #1d1a16;
-      }
-      .project-card-wrap:nth-child(3) .project-label {
-        --project-color: #ffd23f;
-        color: #1d1a16;
-      }
-      .project-card-wrap {
-        z-index: 1;
-      }
-      .project-card-wrap:nth-child(2) {
-        z-index: 2;
-      }
-      .project-card-wrap:nth-child(3) {
-        z-index: 3;
-      }
       .project-copy {
+        align-self: start;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        margin-top: 28px;
       }
       .project-eyebrow {
         font-size: 0.9rem;
@@ -1185,8 +1179,8 @@
         opacity: 0;
         transform: translateY(30px);
         transition:
-          opacity 0.7s,
-          transform 0.7s;
+          opacity 0.6s ease,
+          transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
       }
       .rv.in {
         opacity: 1;
@@ -1231,9 +1225,11 @@
           grid-template-columns: 1fr;
         }
         .project-card-wrap {
-          height: auto;
+          display: block;
           min-height: 0;
+          height: auto;
           margin: 0 0 38px;
+          padding: 0;
         }
         .project-card-wrap:last-child {
           margin-bottom: 0;
@@ -1248,7 +1244,10 @@
           gap: 24px;
         }
         .project-label {
+          min-width: 220px;
           top: -42px;
+          padding: 15px 34px 16px 22px;
+          font-size: 0.85rem;
         }
         .detail-gallery-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1306,10 +1305,18 @@
           font-size: 0.9rem;
         }
         .project-label {
+          left: 0;
+          width: auto;
           min-width: 220px;
           top: -42px;
           padding: 15px 34px 16px 22px;
           font-size: 0.85rem;
+          text-align: left;
+          clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 100%, 0 100%);
+        }
+        .project-card-wrap:nth-child(2) .project-label,
+        .project-card-wrap:nth-child(3) .project-label {
+          left: 0;
         }
         .project-panel {
           padding: 28px 20px;
@@ -1411,9 +1418,11 @@
             rel="noopener"
             ><h2>Tentang Saya ↗</h2>
             <p>
-              Saya lulusan Informatika Universitas Sanata Dharma dengan minat
-              pada Data Analytics dan teknologi. Saya memiliki pengalaman dalam
-              pengolahan data, database, pemrograman, dan pengembangan sistem.
+              Saya merupakan lulusan S1 Informatika Universitas Sanata Dharma
+              yang memiliki minat pada Data Analytics dan teknologi. Saya
+              memiliki pengalaman praktik dalam pengolahan data, pengelolaan
+              database, pemrograman, dan pengembangan sistem melalui proyek
+              akademik dan proyek pribadi.
             </p></a
           >
         </div>
@@ -1436,8 +1445,7 @@
     <section class="project-detail" id="project-detail" hidden></section>
 
     <section class="home-tools" id="tools">
-      <span class="tag-h hand">tools &amp; teknologi</span>
-      <h2>Senjata Saya</h2>
+      <h2>Tools dan Teknologi</h2>
       <div class="tools" id="tl"></div>
     </section>
 
@@ -1539,8 +1547,8 @@
           g: ["E-Commerce Website", "Front-End Developer", "Team Project"],
           i: "assets/images/project-tanamin.jpg",
           d: "Tanam.in merupakan proyek pengembangan e-commerce berbasis web. Dalam proyek ini, kontribusi saya berfokus pada pengembangan antarmuka dan implementasi fitur checkout.",
-          c: "#1d1a16",
-          ink: "#fff",
+          c: "#ff5a36",
+          ink: "#1d1a16",
           tech: [
             "HTML",
             "CSS",
@@ -1631,6 +1639,14 @@
           ],
         },
       ];
+      const projectOrder = [
+        "delivery-performance-analytics",
+        "sistem-rekomendasi-mobil",
+        "tanam-in",
+      ];
+      P.sort(
+        (a, b) => projectOrder.indexOf(a.id) - projectOrder.indexOf(b.id),
+      );
       const T = [
         {
           name: "SQL",
@@ -1668,6 +1684,24 @@
             "Digunakan untuk pengolahan data, analisis, dan pembuatan visualisasi sederhana.",
           icon: '<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M27 5h13v38H8V13l19-8Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M27 5v9h13M14 22h20M14 29h20M14 36h20M23 22v14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>',
         },
+        {
+          name: "Pandas",
+          description:
+            "Digunakan untuk membersihkan, mengolah, dan menganalisis data tabular dengan Python.",
+          icon: '<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M14 8v12m0 8v12M24 5v7m0 8v15m0 5v3M34 8v18m0 8v6" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><circle cx="14" cy="24" r="3" fill="currentColor"/><circle cx="24" cy="16" r="3" fill="currentColor"/><circle cx="34" cy="30" r="3" fill="currentColor"/></svg>',
+        },
+        {
+          name: "Plotly",
+          description:
+            "Digunakan untuk membuat visualisasi data dan grafik interaktif.",
+          icon: '<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M8 39h32M12 33V23m8 10V14m8 19V20m8 13V9" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="12" cy="19" r="3" fill="currentColor"/><circle cx="20" cy="10" r="3" fill="currentColor"/><circle cx="28" cy="16" r="3" fill="currentColor"/><circle cx="36" cy="5" r="3" fill="currentColor"/></svg>',
+        },
+        {
+          name: "Streamlit",
+          description:
+            "Digunakan untuk membangun aplikasi dan dashboard interaktif berbasis Python.",
+          icon: '<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="m24 7 18 10-18 10L6 17 24 7Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="m6 25 18 10 18-10M6 33l18 10 18-10" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>',
+        },
       ];
       const MK = [
         "Administrasi Basis Data",
@@ -1678,7 +1712,7 @@
       ];
       $("#project-stack").innerHTML = P.map(
         (p, n) =>
-          `<div class="project-card-wrap"><article class="project-panel" style="--project-color:${p.c};--project-ink:${p.ink}"><span class="project-label">✦ &nbsp; PROJECT 0${n + 1}</span><div class="project-copy"><span class="project-eyebrow">PROJECT 0${n + 1} &nbsp;·&nbsp; PORTOFOLIO CHAHYO</span><h3>${p.t}</h3><p>${p.d}</p><a class="project-link" href="?project=${encodeURIComponent(p.id)}" target="_blank" rel="noopener">VIEW PROJECT ↗</a><div class="project-tags">${p.g.map((g) => `<span class="project-tag">${g}</span>`).join("")}</div></div><div class="project-visual"><img src="${p.i}" alt="Tampilan ${p.t}"></div></article></div>`,
+          `<div class="project-card-wrap" id="project-0${n + 1}" style="--project-remaining:${P.length - n - 1}"><article class="project-panel" style="--project-color:${p.c};--project-ink:${p.ink}"><span class="project-label">✦ &nbsp; PROJECT 0${n + 1}</span><div class="project-copy"><h3>${p.t}</h3><p>${p.d}</p><a class="project-link" href="?project=${encodeURIComponent(p.id)}" target="_blank" rel="noopener">VIEW PROJECT ↗</a><div class="project-tags">${p.g.map((g) => `<span class="project-tag">${g}</span>`).join("")}</div></div><div class="project-visual"><img src="${p.i}" alt="Tampilan ${p.t}"></div></article></div>`,
       ).join("");
       $("#tl").innerHTML = T.map(
         (x) =>
@@ -1687,7 +1721,7 @@
       const detailFooter = (nextUrl, nextLabel) =>
         `<section class="detail-contact"><span class="tag-h hand">ayo ngobrol</span><h2>Terbuka untuk peluang baru</h2><p>Terbuka untuk kesempatan kerja di bidang Data Analytics dan teknologi.<br>Maguwoharjo, Depok, Sleman · Willing to relocate</p><a class="big" href="mailto:chahyokumolonugroho@gmail.com">chahyokumolonugroho@gmail.com</a><div class="row"><a class="btn pri" href="https://linkedin.com/in/chahyo-kumolo-nugroho" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="https://www.instagram.com/cahyokml" target="_blank" rel="noopener">Instagram</a><a class="btn" href="https://wa.me/+6282384039392" target="_blank" rel="noopener">WhatsApp</a></div><nav class="detail-navigation" aria-label="Navigasi halaman"><a href="${location.pathname}">← Beranda</a><a href="${nextUrl}">${nextLabel} →</a></nav></section>`;
       $("#about-detail").innerHTML =
-        `<a class="detail-back" href="${location.pathname}#tentang">← Kembali ke beranda</a><h1 style="font-size:clamp(2.8rem,7vw,5.5rem)">Tentang Saya</h1><div class="about-detail-hero"><img class="about-detail-photo" src="assets/images/foto-profil.jpg" alt="Foto Chahyo Kumolo Nugroho"><div class="about-detail-copy"><div class="box"><h2 class="hand" style="font-size:2rem">Halo, saya Chahyo ✨</h2><p>Saya lulusan S1 Informatika Universitas Sanata Dharma yang memiliki minat pada Data Analytics dan pengolahan data.</p><p>Selama kuliah, saya memiliki pengalaman dalam pengolahan data, database, pemrograman, dan pengembangan sistem. Saya juga mengembangkan sistem rekomendasi pemilihan mobil sebagai project tugas akhir dengan pendekatan Knowledge-Based, Constraint-Based Filtering, dan Similarity Scoring.</p><p>Saya ingin terus mengembangkan kemampuan di bidang Data Analytics dan teknologi, serta mendapatkan pengalaman melalui pekerjaan dan project yang memberi kesempatan untuk belajar dan menyelesaikan masalah.</p></div></div></div><h2 class="about-section-title"><span class="tag-h hand">education</span>Pendidikan</h2><div class="box"><h3>🎓 Universitas Sanata Dharma</h3><p>S1 Informatika · 2022 — 2026</p><p>Mata kuliah relevan:</p><div class="chips">${MK.map((x) => `<span class="chip">${x}</span>`).join("")}</div><p style="margin-top:12px">Tugas akhir: <i>Pemodelan dengan Pendekatan Knowledge-Based Constraint untuk Pemilihan Mobil</i></p></div><h2 class="about-section-title"><span class="tag-h hand">experience</span>Pengalaman</h2><div class="box"><h3>☕ Barista · Mukalla.st</h3><p>Februari – Juni 2026</p></div><section class="certificates-detail" id="certificates"><span class="tag-h hand">belajar terus</span><h2>Sertifikat &amp; Pelatihan</h2><div class="certs"><div class="pol rv" style="--r:-3deg;transform:rotate(-3deg)" data-z="assets/images/sertifikat-intro-data-analytics.jpg" data-t="Intro to Data Analytics"><img src="assets/images/sertifikat-intro-data-analytics.jpg" alt="Sertifikat Intro to Data Analytics"><p class="hand">Intro to Data Analytics</p></div><div class="pol rv" style="transform:rotate(3deg)" data-z="assets/images/sertifikat-sap01.jpg" data-t="SAP01 – SAP Overview"><img src="assets/images/sertifikat-sap01.jpg" alt="Sertifikat SAP01 SAP Overview"><p class="hand">SAP01 – SAP Overview</p></div></div></section>`;
+        `<a class="detail-back" href="${location.pathname}#tentang">← Kembali ke beranda</a><h1 style="font-size:clamp(2.8rem,7vw,5.5rem)">Tentang Saya</h1><div class="about-detail-hero"><img class="about-detail-photo" src="assets/images/foto-profil.jpg" alt="Foto Chahyo Kumolo Nugroho"><div class="about-detail-copy"><div class="box"><h2 class="hand" style="font-size:2rem">Halo, saya Chahyo ✨</h2><p>Saya merupakan lulusan S1 Informatika Universitas Sanata Dharma yang memiliki minat pada bidang Data Analytics dan pengolahan data.</p><p>Selama kuliah, saya mempelajari pengolahan data, pengelolaan database, pemrograman, dan analisis data. Saya mengembangkan proyek Delivery Performance Analytics untuk menganalisis performa pengiriman e-commerce menggunakan dataset publik, serta sistem rekomendasi pemilihan mobil sebagai tugas akhir dengan pendekatan berbasis pengetahuan dan perhitungan similarity.</p><p>Melalui proyek-proyek tersebut, saya mengembangkan kemampuan teknis, analisis, dan pemecahan masalah. Saya ingin terus meningkatkan kemampuan tersebut serta menerapkannya untuk menghasilkan insight yang bermanfaat dalam bidang Data Analytics.</p></div></div></div><h2 class="about-section-title">Pendidikan</h2><div class="box"><h3>🎓 Universitas Sanata Dharma</h3><p>S1 Informatika · 2022 — 2026</p><p>Mata kuliah relevan:</p><div class="chips">${MK.map((x) => `<span class="chip">${x}</span>`).join("")}</div><p style="margin-top:12px">Tugas akhir: <i>Pemodelan dengan Pendekatan Knowledge-Based Constraint untuk Pemilihan Mobil</i></p></div><h2 class="about-section-title">Pengalaman</h2><div class="box"><h3>☕ Barista · Mukalla.st</h3><p>Februari – Juni 2026</p></div><section class="certificates-detail" id="certificates"><h2>Sertifikat &amp; Pelatihan</h2><div class="certs"><div class="pol rv" style="--r:-3deg;transform:rotate(-3deg)" data-z="assets/images/sertifikat-intro-data-analytics.jpg" data-t="Intro to Data Analytics"><img src="assets/images/sertifikat-intro-data-analytics.jpg" alt="Sertifikat Intro to Data Analytics"><p class="hand">Intro to Data Analytics</p></div><div class="pol rv" style="transform:rotate(3deg)" data-z="assets/images/sertifikat-sap01.jpg" data-t="SAP01 – SAP Overview"><img src="assets/images/sertifikat-sap01.jpg" alt="Sertifikat SAP01 SAP Overview"><p class="hand">SAP01 – SAP Overview</p></div></div></section>`;
       $("#about-detail").insertAdjacentHTML(
         "beforeend",
         detailFooter(
